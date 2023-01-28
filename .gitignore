@@ -5,3 +5,6 @@
 .import/
 export.cfg
 export_presets.cfg
+
+# Logo
+logo.png.import
