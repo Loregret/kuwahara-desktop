@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cphkfwd0eook0"]
+[gd_scene load_steps=6 format=3 uid="uid://cphkfwd0eook0"]
 
 [ext_resource type="Script" path="res://image_controller.gd" id="1_t27fy"]
-[ext_resource type="Texture2D" uid="uid://bmii2t41um6jg" path="res://examples/oldman.jpg" id="2_yfkas"]
 [ext_resource type="Script" path="res://shader_list.gd" id="3"]
 [ext_resource type="Script" path="res://open_img_button.gd" id="4_yb6bl"]
 
@@ -66,7 +65,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 7
 size_flags_vertical = 7
-texture = ExtResource("2_yfkas")
 stretch_mode = 5
 script = SubResource("GDScript_bmob7")
 
