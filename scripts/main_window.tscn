@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cphkfwd0eook0"]
+[gd_scene load_steps=6 format=3 uid="uid://bkxy28kjgm7ax"]
 
-[ext_resource type="Script" path="res://image_controller.gd" id="1_t27fy"]
-[ext_resource type="Script" path="res://shader_list.gd" id="3"]
-[ext_resource type="Script" path="res://open_img_button.gd" id="4_yb6bl"]
+[ext_resource type="Script" path="res://scripts/image_controller.gd" id="1_lb0vh"]
+[ext_resource type="Script" path="res://scripts/shader_list.gd" id="2_p6d03"]
+[ext_resource type="Script" path="res://scripts/open_img_button.gd" id="3_25rbw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d1i81"]
 
@@ -14,7 +14,7 @@ func update_pivot():
 	pivot_offset = size / 2
 "
 
-[node name="Software" type="Panel"]
+[node name="MainWindow" type="Panel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,7 +43,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 stretch = true
-script = ExtResource("1_t27fy")
+script = ExtResource("1_lb0vh")
 
 [node name="MainImageViewport" type="SubViewport" parent="HBoxContainer/ImageBox/SubViewportContainer"]
 unique_name_in_owner = true
@@ -88,7 +88,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("3")
+script = ExtResource("2_p6d03")
 
 [node name="SliderList" type="VBoxContainer" parent="HBoxContainer/SettingsBox"]
 unique_name_in_owner = true
@@ -99,7 +99,7 @@ alignment = 1
 [node name="OpenImg" type="Button" parent="HBoxContainer/SettingsBox"]
 layout_mode = 2
 text = "Open Image"
-script = ExtResource("4_yb6bl")
+script = ExtResource("3_25rbw")
 
 [node name="SaveImg" type="Button" parent="HBoxContainer/SettingsBox"]
 layout_mode = 2
