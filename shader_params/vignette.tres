@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://7o6xph5awhek"]
+
+[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_5546u"]
+
+[resource]
+script = ExtResource("1_5546u")
+params = {
+"InnerVig": Vector3(0, 1, 0.5),
+"OuterVig": Vector3(0, 25, 1),
+"bEnable": Vector3(0, 5, 0),
+"gEnable": Vector3(0, 5, 0),
+"rEnable": Vector3(0, 255, 0)
+}
+default_params = {
+"InnerVig": 0.5,
+"OuterVig": 1.0,
+"bEnable": 0.0,
+"gEnable": 0.0,
+"rEnable": 0.0
+}
+rounded_params = null

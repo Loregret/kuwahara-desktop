@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://b50n5njskvt30"]
+
+[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_gdy1r"]
+
+[resource]
+script = ExtResource("1_gdy1r")
+params = {
+"pixel_size": Vector3i(1, 150, 4)
+}
+default_params = {
+"pixel_size": 4
+}

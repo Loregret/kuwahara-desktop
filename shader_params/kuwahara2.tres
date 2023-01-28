@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://djxlh1tbtvt72"]
+
+[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_gx07n"]
+
+[resource]
+script = ExtResource("1_gx07n")
+params = {
+"radius": Vector3i(0, 20, 3)
+}
+default_params = {
+"radius": 3
+}
+rounded_params = PackedStringArray("radius")

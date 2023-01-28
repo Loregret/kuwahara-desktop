@@ -1,0 +1,137 @@
+[gd_scene load_steps=7 format=3 uid="uid://cphkfwd0eook0"]
+
+[ext_resource type="Script" path="res://image_controller.gd" id="1_t27fy"]
+[ext_resource type="Texture2D" uid="uid://bmii2t41um6jg" path="res://examples/oldman.jpg" id="2_yfkas"]
+[ext_resource type="Script" path="res://shader_list.gd" id="3"]
+[ext_resource type="Script" path="res://open_img_button.gd" id="4_yb6bl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d1i81"]
+
+[sub_resource type="GDScript" id="GDScript_bmob7"]
+script/source = "extends TextureRect
+
+
+func update_pivot():
+	pivot_offset = size / 2
+"
+
+[node name="Software" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vbox" type="VBoxContainer" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ImageBox" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer/ImageBox"]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+script = ExtResource("1_t27fy")
+
+[node name="MainImageViewport" type="SubViewport" parent="HBoxContainer/ImageBox/SubViewportContainer"]
+unique_name_in_owner = true
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(942, 648)
+render_target_update_mode = 4
+
+[node name="Image" type="TextureRect" parent="HBoxContainer/ImageBox/SubViewportContainer/MainImageViewport"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_d1i81")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -17.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 7
+size_flags_vertical = 7
+texture = ExtResource("2_yfkas")
+stretch_mode = 5
+script = SubResource("GDScript_bmob7")
+
+[node name="SettingsBox" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="Blank2" type="Control" parent="HBoxContainer/SettingsBox"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/SettingsBox"]
+layout_mode = 2
+text = "Effects:"
+uppercase = true
+
+[node name="ShaderList" type="ItemList" parent="HBoxContainer/SettingsBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("3")
+
+[node name="SliderList" type="VBoxContainer" parent="HBoxContainer/SettingsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="OpenImg" type="Button" parent="HBoxContainer/SettingsBox"]
+layout_mode = 2
+text = "Open Image"
+script = ExtResource("4_yb6bl")
+
+[node name="SaveImg" type="Button" parent="HBoxContainer/SettingsBox"]
+layout_mode = 2
+text = "Save Image"
+
+[node name="Blank" type="Control" parent="HBoxContainer/SettingsBox"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+
+[node name="Blank" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+
+[node name="LoadWindow" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a File"
+size = Vector2i(450, 360)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+
+[node name="SaveWindow" type="FileDialog" parent="."]
+unique_name_in_owner = true
+size = Vector2i(450, 360)
+ok_button_text = "Save"
+access = 2
+filters = PackedStringArray("*.png")
+
+[connection signal="item_selected" from="HBoxContainer/SettingsBox/ShaderList" to="HBoxContainer/SettingsBox/ShaderList" method="_on_shaderlist_item_selected"]
+[connection signal="pressed" from="HBoxContainer/SettingsBox/OpenImg" to="HBoxContainer/SettingsBox/OpenImg" method="_on_pressed"]
+[connection signal="button_down" from="HBoxContainer/SettingsBox/SaveImg" to="HBoxContainer/SettingsBox/ShaderList" method="_on_button_down"]
+[connection signal="file_selected" from="LoadWindow" to="HBoxContainer/SettingsBox/ShaderList" method="_on_file_dialog_file_selected"]
+[connection signal="file_selected" from="SaveWindow" to="HBoxContainer/SettingsBox/ShaderList" method="_on_save_file_selected"]

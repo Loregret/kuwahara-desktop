@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dvvy6aur2h1bb"]
+
+[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_68xvu"]
+
+[resource]
+script = ExtResource("1_68xvu")
+params = null
+default_params = null

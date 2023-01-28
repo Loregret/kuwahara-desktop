@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://codc4yieqlarg"]
+
+[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_cga4c"]
+
+[resource]
+script = ExtResource("1_cga4c")
+params = {
+"colors": Vector3i(1, 50, 5),
+"dither": Vector3(0, 2.5, 0.25)
+}
+default_params = {
+"colors": 5,
+"dither": 0.25
+}
