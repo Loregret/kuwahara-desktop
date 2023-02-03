@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://b76opfopgu5b1"]
+
+[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_v7xjf"]
+
+[resource]
+script = ExtResource("1_v7xjf")
+params = {
+"steps": Vector3(10, 1000, 8)
+}
+default_params = {
+"steps": 255.0
+}
+rounded_params = ["steps"]

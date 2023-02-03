@@ -10,3 +10,4 @@ params = {
 default_params = {
 "pixel_size": 5
 }
+rounded_params = []
