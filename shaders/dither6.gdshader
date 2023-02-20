@@ -18,11 +18,11 @@ vec4(251./255., 245./255., 239./255., 1.)};
 
 // Amount of colors in the palette
 // Changing this is not recommended
-const int colors = int(palette.length());
+
 
 // How much the dither effect spreads. By default it is set to decrease as the amount of colors increases.
 // Set to 0 to disable the dithering effect for flat color areas.
-const float dither_spread = 1./float(colors);
+
 
 // Precomputed threshold map for dithering
 const mat4 threshold = mat4( vec4(0., 8., 2., 10.), 
@@ -31,7 +31,7 @@ const mat4 threshold = mat4( vec4(0., 8., 2., 10.),
                                 vec4(15.,7.,13., 5.));
 
 // Chooses a color from the palette based on the current luminance
-vec4 applyPalette(float lum)
+vec4 applyPalette(float lum, int colors)
 {
     lum = floor(lum * float(colors));
     return palette[int(lum)];
@@ -39,6 +39,8 @@ vec4 applyPalette(float lum)
 
 void fragment()
 {
+	const int colors = int(palette.length());
+	const float dither_spread = 1./float(colors);
 	vec2 iResolution = 1.0 / TEXTURE_PIXEL_SIZE;
     // https://luka712.github.io/2018/07/01/Pixelate-it-Shadertoy-Unity/
     float pixelSizeX = 1.0 / iResolution.x;
@@ -72,7 +74,7 @@ void fragment()
     float lum = (0.299*col.r + 0.587*col.g + 0.114*col.b);
     
     // Apply the new color palette
-    col = applyPalette(lum);
+    col = applyPalette(lum, colors);
 
     // Output to screen
     COLOR = vec4(col);
