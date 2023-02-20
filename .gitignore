@@ -7,4 +7,5 @@ export.cfg
 export_presets.cfg
 
 # Logo
+*.import
 logo.png.import
