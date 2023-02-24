@@ -16,9 +16,9 @@ run/main_scene="res://scripts/main_window.tscn"
 config/features=PackedStringArray("4.0")
 run/low_processor_mode=true
 boot_splash/show_image=false
-boot_splash/image="res://logo.png"
+boot_splash/image="res://assets/logo.png"
 boot_splash/fullsize=false
-config/icon="res://logo.png"
+config/icon="res://assets/logo.png"
 
 [display]
 

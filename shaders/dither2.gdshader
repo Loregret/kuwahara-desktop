@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+uniform float gamma = 0.004;
+
 const mat4 bayerIndex = mat4(
     vec4(00.0/16.0, 12.0/16.0, 03.0/16.0, 15.0/16.0),
     vec4(08.0/16.0, 04.0/16.0, 11.0/16.0, 07.0/16.0),
@@ -13,7 +15,7 @@ void fragment()
     vec4 col = texture(TEXTURE, UV);
     
     // gamma correction
-    col = vec4(pow(col.rgb,vec3(2.2)) - 0.004,col.a);
+    col = vec4(pow(col.rgb,vec3(2.2)) - gamma, col.a);
     
     // find bayer matrix entry based on fragment position
     float bayerValue = bayerIndex[int(FRAGCOORD.x) % 4][int(FRAGCOORD.y) % 4];

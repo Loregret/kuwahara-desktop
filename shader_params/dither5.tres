@@ -1,13 +1,19 @@
-[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://cefv1kofk4ll3"]
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://bmb5be5awgb6t"]
 
-[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_vdg8p"]
+[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_3amh6"]
 
 [resource]
-script = ExtResource("1_vdg8p")
+script = ExtResource("1_3amh6")
 params = {
-"pixel_size": Vector3i(1, 50, 5)
+"R": Vector3(0, 10, 0.25),
+"brightness": Vector3(0, 15, 1),
+"pixel_size": Vector3(0, 100, 2)
 }
 default_params = {
-"pixel_size": 5
+"R": 0.25,
+"brightness": 1.0,
+"pixel_size": 2.0
 }
 rounded_params = ["pixel_size"]
+colors_params = {}
+steps_params = {}

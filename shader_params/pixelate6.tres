@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://ge4ldewj4y41"]
+
+[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_6iqta"]
+
+[resource]
+script = ExtResource("1_6iqta")
+params = {
+"pixel_scale": Vector3(1, 5, 2)
+}
+default_params = {
+"pixel_scale": 2.0
+}
+rounded_params = PackedStringArray("pixel_scale")

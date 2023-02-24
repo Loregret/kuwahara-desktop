@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://dsn7mno0q7klj"]
+
+[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_u40vr"]
+
+[resource]
+script = ExtResource("1_u40vr")
+params = {
+"levels": Vector3(0, 16, 4),
+"luma_b": Vector3(-2, 2, 0.072),
+"luma_g": Vector3(-2, 2, 0.715),
+"luma_r": Vector3(-2, 2, 0.213)
+}
+default_params = {
+"levels": 4.0,
+"luma_b": 0.072,
+"luma_g": 0.715,
+"luma_r": 0.213
+}
+rounded_params = ["levels"]
+colors_params = {}
+steps_params = {
+"levels": 1.0
+}

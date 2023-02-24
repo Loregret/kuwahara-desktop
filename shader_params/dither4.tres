@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://c66tu1vkcc1s6"]
+
+[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_8rtbf"]
+
+[resource]
+script = ExtResource("1_8rtbf")
+params = {
+"division": Vector3(5, 500, 1000),
+"levels": Vector3(2, 8.6, 8),
+"spacing": Vector3(1, 55, 2.2)
+}
+default_params = {
+"division": 255.0,
+"levels": 8.0,
+"spacing": 2.2
+}
+rounded_params = ["levels", "division"]
+colors_params = {}
+steps_params = {}

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://b1vi8221nm1y3"]
+
+[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_siexu"]
+
+[resource]
+script = ExtResource("1_siexu")
+params = {
+"gamma": Vector3(-1, 1, 0.004)
+}
+default_params = {
+"gamma": 0.004
+}
+rounded_params = []
+colors_params = {}
+steps_params = {
+"gamma": 0.001
+}

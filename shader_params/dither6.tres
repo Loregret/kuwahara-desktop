@@ -1,13 +1,20 @@
-[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://ge4ldewj4y41"]
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://cg2k17t4f4qai"]
 
-[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_6iqta"]
+[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_84qpv"]
 
 [resource]
-script = ExtResource("1_6iqta")
+script = ExtResource("1_84qpv")
 params = {
-"pixel_scale": Vector3(1, 5, 2)
+"quality": Vector3(2, 100, 5),
+"scale": Vector3(0, 5, 0)
 }
 default_params = {
-"pixel_scale": 2.0
+"quality": 5.0,
+"scale": 0.0
 }
-rounded_params = PackedStringArray("pixel_scale")
+rounded_params = ["scale", "quality"]
+colors_params = {
+"highcolor": Vector3(0.9, 0.9, 0.9),
+"lowcolor": Vector3(0.2, 0.05, 0.04)
+}
+steps_params = {}

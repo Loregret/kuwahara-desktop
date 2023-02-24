@@ -1,108 +1,40 @@
-// https://www.shadertoy.com/view/Xdt3Dr
 shader_type canvas_item;
-uniform float pixel_size = 4.;
 
+const mat4 M = mat4(
+    vec4(0., 8., 2., 10.),
+    vec4(12., 4., 14., 6.),
+    vec4(3., 11., 1., 9.),
+    vec4(15., 7., 13., 5.)
+    );
 
-//----------------------------------------------------------------------------
+uniform float R = 0.25;
 
-float bayer8x8(sampler2D ichannel , vec2 uvScreenSpace)
+uniform float pixel_size = 2.;
+
+uniform float brightness = 1.;
+
+void dithering(inout float v, vec2 coords)
 {
-    return texture(ichannel, uvScreenSpace/(pixel_size*8.)).r;
+    v += R * (M[int(coords.x) % 4][int(coords.y) % 4] / 16.0 - .5);
+    v = (step(.25, v) + step(.5, v) + step(.75, v)) / 3.;
 }
 
 
-//----------------------------------------------------------------------------
-// c64 palette
-const vec3 color0 = vec3(0,0,0);// black
-const vec3 color1 = vec3(1,1,1);// white
-const vec3 color2 = vec3(0.41,0.22,0.17);// red
-const vec3 color3 = vec3(0.44,0.64,0.70);// cyan
-const vec3 color4 = vec3(0.44,0.24,0.53);// violet
-const vec3 color5 = vec3(0.35,0.55,0.26);// green
-const vec3 color6 = vec3(0.21,0.16,0.47);// blue
-const vec3 color7 = vec3(0.72,0.78,0.44);// yellow
-const vec3 color8 = vec3(0.44,0.31,0.15);// orange
-const vec3 color9 = vec3(0.26,0.22,0);// brown
-const vec3 colorA = vec3(0.60,0.40,0.35);// light red
-const vec3 colorB = vec3(0.27,0.27,0.27);// grey1
-const vec3 colorC = vec3(0.42,0.42,0.42);// grey2
-const vec3 colorD = vec3(0.60,0.82,0.52);// light green
-const vec3 colorE = vec3(0.42,0.37,0.71);// light blue
-const vec3 colorF = vec3(0.58,0.58,0.58);// grey3
-
-
-
-
-
-
-
-
-vec3 selectIfCloser (in vec3 idealColor, in vec3 paletteColor, in vec3 bestColorSoFar, inout float currentDistance) 
+void fragment( )
 {
-    float thisDistance = distance(idealColor, paletteColor);
-    if(thisDistance < currentDistance)
-    {
-        currentDistance = thisDistance;
-        return paletteColor;
-    }
-    return bestColorSoFar;
-}
-
-// a more optimized version of this could do something like a binary search
-// or order by luminocity and short-circuit search that way.
-vec3 palettize(vec3 idealColor)
-{
-    // init with first palette color
-	float dmin = distance(idealColor, color0);
-    vec3 closest = color0;
-
-    closest = selectIfCloser(idealColor, color1, closest, dmin);
-    closest = selectIfCloser(idealColor, color2, closest, dmin);
-    closest = selectIfCloser(idealColor, color3, closest, dmin);
-    closest = selectIfCloser(idealColor, color4, closest, dmin);
-    closest = selectIfCloser(idealColor, color5, closest, dmin);
-    closest = selectIfCloser(idealColor, color6, closest, dmin);
-    closest = selectIfCloser(idealColor, color7, closest, dmin);
-    closest = selectIfCloser(idealColor, color8, closest, dmin);
-    closest = selectIfCloser(idealColor, color9, closest, dmin);
-    closest = selectIfCloser(idealColor, colorA, closest, dmin);
-    closest = selectIfCloser(idealColor, colorB, closest, dmin);
-    closest = selectIfCloser(idealColor, colorC, closest, dmin);
-    closest = selectIfCloser(idealColor, colorD, closest, dmin);
-    closest = selectIfCloser(idealColor, colorE, closest, dmin);
-    closest = selectIfCloser(idealColor, colorF, closest, dmin);
-    return closest;
-}
-
-vec3 getSceneColor(sampler2D ichannel, in vec2 uv )
-{
-    return texture(ichannel, uv).rgb;
-}
-
-void fragment()
-{
-    vec2 uv = UV;// 0-1
+    vec2 fragCoord = FRAGCOORD.xy - mod(FRAGCOORD.xy, pixel_size) - vec2(pixel_size, pixel_size) * .5;
+    vec2 uv = UV;
     
-    // space between values of the dest palette
-    vec3 quantizationPeriod = vec3(1./16.);
+    vec3 col = texture(TEXTURE, uv).rgb;
+    col *= brightness;
     
-	vec2 uvPixellated = floor( (UV / TEXTURE_PIXEL_SIZE) / pixel_size) * pixel_size;
-    
-	// original color panel---------------------
-//    vec3 originalCol = getSceneColor(TEXTURE, uv);
-    
-    // dithered panel---------------------
-    vec3 dc = getSceneColor(TEXTURE, uvPixellated / (1.0 / TEXTURE_PIXEL_SIZE).xy);
-//	vec3 dc = getSceneColor(TEXTURE, uv);
-	
-	dc += (bayer8x8(TEXTURE, (UV / TEXTURE_PIXEL_SIZE))-.5) * (quantizationPeriod);
+    float v = col.r * .299 + col.g * .587 + col.b * .114;
 
-    dc = palettize(dc);
-
-    COLOR = vec4(dc, 1);
+    
+    dithering(v, fragCoord);
+    dithering(col.r, fragCoord);
+    dithering(col.g, fragCoord);
+    dithering(col.b, fragCoord);
+    
+    COLOR = vec4(col, 1.0);
 }
-
-
-
-
-

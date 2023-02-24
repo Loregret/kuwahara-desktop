@@ -1,10 +1,15 @@
 shader_type canvas_item;
 
+uniform int levels = 4;
+
+uniform float luma_r = 0.2126;
+uniform float luma_g = 0.7152;
+uniform float luma_b = 0.0722;
 
 const mat4 threshold = mat4(vec4(0., 8., 2., 10.), 
-                                vec4(12., 4., 14., 6.),
-                                vec4(3.,11.,1.,9.),
-                                vec4(15.,7.,13., 5.));
+                            vec4(12., 4., 14., 6.),
+                            vec4(3.,11.,1.,9.),
+                            vec4(15.,7.,13., 5.));
 
 
 float findClosest(int x, int y, float v)
@@ -25,17 +30,16 @@ float findClosest(int x, int y, float v)
 void fragment( )
 {
     // Normalized pixel coordinates (from 0 to 1)
-//    vec2 uv = fragCoord/iResolution.xy;
     vec4 col = texture(TEXTURE, UV);
 
     // https://en.wikipedia.org/wiki/Ordered_dithering
-   	int x = int(FRAGCOORD.x) % 4;
-    int y = int(FRAGCOORD.y) % 4;
+    int x = int(FRAGCOORD.x) % levels;
+    int y = int(FRAGCOORD.y) % levels;
     
     // https://en.wikipedia.org/wiki/Luma_(video)
-	float lum = dot(vec3(0.2126, 0.7152, 0.0722), col.rgb);
+    float lum = dot(vec3(luma_r, luma_g, luma_b), col.rgb);
     lum = findClosest(x,y, lum);
  
-	// Output to screen
-	COLOR = vec4(lum);
+
+    COLOR = vec4(lum);
 }

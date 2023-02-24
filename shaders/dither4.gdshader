@@ -20,7 +20,7 @@ vec4(51.0/64.0, 19.0/64.0, 59.0/64.0, 27.0/64.0),
 vec4(15.0/64.0, 47.0/64.0,  7.0/64.0, 39.0/64.0),
 vec4(63.0/64.0, 31.0/64.0, 55.0/64.0, 23.0/64.0)
 );
-	
+
 const mat4 bayerbr = mat4( 
 vec4(1.0/64.0, 33.0/64.0,  9.0/64.0, 41.0/64.0),
 vec4(49.0/64.0, 17.0/64.0, 57.0/64.0, 25.0/64.0),
@@ -60,13 +60,18 @@ float dither( mat4 m, ivec2 p )
 	}	
 }
 
+uniform float levels = 8.0;
+uniform float spacing = 2.2;
+uniform float division = 255;
+
 void fragment()
 {
-	ivec2 p = ivec2(mod( FRAGCOORD.xy, 8.0 ));
+	ivec2 p = ivec2(mod( FRAGCOORD.xy, levels));
 	vec2 uv = FRAGCOORD.xy / (1.0 / SCREEN_PIXEL_SIZE).xy;
+	
 	vec3 c = texture( TEXTURE, UV ).xyz;
-	c = pow( c, vec3(2.2) );	
-	c -= 1.0/255.0;
+	c = pow(c, vec3(spacing) );
+	c -= 1.0/ division;
 	
 	vec3 d = vec3(0.0);
 	if( p.x <= 3 && p.y <= 3 )
@@ -93,6 +98,6 @@ void fragment()
 		d.g = float( c.g > dither( bayerbr, p -ivec2(4,4) ) );
 		d.b = float( c.b > dither( bayerbr, p -ivec2(4,4) ) );
 	}
-	//c=texture( iChannel0, uv ).xyz;
+
 	COLOR = vec4(d, 1.0);
 }

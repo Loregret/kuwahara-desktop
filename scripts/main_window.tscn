@@ -1,21 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkxy28kjgm7ax"]
+[gd_scene load_steps=6 format=3 uid="uid://v6xt7pdb0jlv"]
 
 [ext_resource type="Script" path="res://scripts/image_controller.gd" id="1_lb0vh"]
-[ext_resource type="Shader" path="res://shaders/ditherGuilloche.gdshader" id="2_ghmgi"]
 [ext_resource type="Script" path="res://scripts/shader_list.gd" id="2_p6d03"]
-[ext_resource type="Texture2D" uid="uid://ypt2lwqqlgko" path="res://ruins.jpg" id="2_ru6w0"]
+[ext_resource type="Texture2D" uid="uid://ew2cfxvbvjuv" path="res://assets/ruins.jpg" id="2_po183"]
 [ext_resource type="Script" path="res://scripts/open_img_button.gd" id="3_25rbw"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4draw"]
-shader = ExtResource("2_ghmgi")
-shader_parameter/levels = 5.0
-shader_parameter/spacing = 0.01
-shader_parameter/frequency = 30.0
-shader_parameter/height = 0.003
-shader_parameter/width = 0.015
-shader_parameter/alias = 0.002
-shader_parameter/bright = 1.2
-shader_parameter/dist = 0.2
 
 [sub_resource type="GDScript" id="GDScript_bmob7"]
 script/source = "extends TextureRect
@@ -66,7 +54,6 @@ render_target_update_mode = 4
 
 [node name="Image" type="TextureRect" parent="HBoxContainer/ImageBox/SubViewportContainer/MainImageViewport"]
 unique_name_in_owner = true
-material = SubResource("ShaderMaterial_4draw")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -76,7 +63,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 7
 size_flags_vertical = 7
-texture = ExtResource("2_ru6w0")
+texture = ExtResource("2_po183")
 stretch_mode = 5
 script = SubResource("GDScript_bmob7")
 

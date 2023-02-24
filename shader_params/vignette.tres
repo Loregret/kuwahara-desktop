@@ -18,4 +18,6 @@ default_params = {
 "gEnable": 0.0,
 "rEnable": 0.0
 }
-rounded_params = null
+rounded_params = []
+colors_params = {}
+steps_params = {}

@@ -70,37 +70,69 @@ func activate_params(activated_shader_name: String):
 		slider_list.add_child(slider)
 		slider.name = a + "Slider"
 		
-		if param_file.rounded_params.has(a):
-			slider.rounded = true
+		if param_file.rounded_params.has(a): slider.rounded = true
 		
 		slider.min_value = param_file.params[a].x
 		slider.max_value = param_file.params[a].y
-		slider.step = 0.01	
 		slider.value = param_file.current_params[a]
+		
+		if param_file.steps_params.has(a): 
+			slider.step = float(param_file.steps_params[a])
+		else:
+			slider.step = 0.01
+		
 		slider.connect("value_changed", Callable(self,"on_slider_change").bind(slider))
+	
+	for c in param_file.colors_params:
+		var label = Label.new()
+		slider_list.add_child(label)
+		label.name = c + "Label"
+		label.text = "Color"
+		
+		var colorpicker := ColorPickerButton.new()
+		colorpicker.name = c + "Colorpicker"
+		slider_list.add_child(colorpicker)
+		
+		var colors_vec3 = param_file.colors_params[c]
+		var new_color = Color(colors_vec3.x, colors_vec3.y, colors_vec3.z)
+		
+		colorpicker.edit_alpha = false
+		colorpicker.color = new_color
+		colorpicker.text = "Pick Color"
+		colorpicker.connect("color_changed", Callable(self, "on_color_changed").bind(colorpicker))
 
 
 func update_params():
-	
 	for a in param_file.params.keys():
 		var label = slider_list.get_node("./" + a + "Label")
 		var slider = slider_list.get_node("./" + a + "Slider")
-		label.text = a + ": " + str(slider.value)
+		label.text = a + ": " + str( round(slider.value * 100)/100 )
+
+
+func on_color_changed(color, colorpicker):
+	var shader_name = colorpicker.name.replace("Colorpicker", "")
+	update_params()
+	image.material.set_shader_parameter(shader_name, color)
+
+
+func on_slider_change(value, slider):
+	var shader_name = slider.name.replace("Slider", "")
+	update_params()
+	image.material.set_shader_parameter(shader_name, value)
+
+
+func load_ext_image(path: String):
+	var img = Image.load_from_file(path)
+	var imgtex = ImageTexture.create_from_image(img)
+	
+	return imgtex
 
 
 func _on_shaderlist_item_selected(index):
 	activate_shader(get_item_text(index))
 
 
-func on_slider_change(value, slider):
-	var shader_name = slider.name.replace("Slider", "")
-	
-	update_params()
-	image.material.set_shader_parameter(shader_name, value)
-
-
 func _on_button_down():
-
 	save_dialog.popup_centered(Vector2i(500,500))
 	save_dialog.current_file = "result.png"
 
@@ -110,16 +142,7 @@ func _on_file_dialog_file_selected(path):
 	image.update_pivot()
 
 
-func load_ext_image(path: String):
-
-	var img = Image.load_from_file(path)
-	var imgtex = ImageTexture.create_from_image(img)
-	
-	return imgtex
-
-
 func _on_save_file_selected(path):
 	prints("saved at ", path)
 	var export_img = viewport.get_texture().get_image()
 	export_img.save_png(path)
-

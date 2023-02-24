@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://xj022gaka3rf"]
+
+[ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_58p2p"]
+
+[resource]
+script = ExtResource("1_58p2p")
+params = {
+"bright": Vector3(0.2, 3, 1.2),
+"dist": Vector3(0, 1, 0.2),
+"frequency": Vector3(0, 300, 30),
+"height": Vector3(0, 0.01, 0.003),
+"levels": Vector3(0, 15, 3),
+"spacing": Vector3(0.001, 0.09, 0.01),
+"width": Vector3(0, 0.1, 0.015)
+}
+default_params = {
+"bright": 1.2,
+"dist": 0.2,
+"frequency": 30.0,
+"height": 0.003,
+"levels": 3.0,
+"spacing": 0.01,
+"width": 0.015
+}
+rounded_params = []
+colors_params = {
+"color": Vector3(0.05, 0.1, -0.15)
+}
+steps_params = {
+"height": 0.001,
+"spacing": 0.001,
+"width": 0.001
+}

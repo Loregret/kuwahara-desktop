@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://codc4yieqlarg"]
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://codc4yieqlarg"]
 
 [ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_cga4c"]
 
@@ -12,3 +12,4 @@ default_params = {
 "colors": 5,
 "dither": 0.25
 }
+rounded_params = []

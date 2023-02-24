@@ -13,7 +13,8 @@ uniform float alias = 0.002;
 uniform float bright = 1.2;
 uniform float dist = 0.2;
 //const vec3 color = vec3(0.05,0.1,-0.15);
-const vec3 color = vec3(0.05,0.1,-0.15);
+uniform vec3 color = vec3(0.05,0.1,-0.15);
+
 
 mat2 rotate2d(float _angle) {
     return mat2(vec2(cos(_angle),-sin(_angle)),
