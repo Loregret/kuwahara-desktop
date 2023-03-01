@@ -1,12 +1,17 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cyvx08yp6401j"]
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://cyvx08yp6401j"]
 
 [ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_cf62v"]
 
 [resource]
 script = ExtResource("1_cf62v")
 params = {
-"pixel_size": Vector3i(1, 420, 200)
+"color_amount": Vector3(3, 255, 6),
+"pixel_size": Vector3i(1, 600, 200)
 }
 default_params = {
+"color_amount": 6.0,
 "pixel_size": 200
 }
+rounded_params = ["pixel_size", "color_amount"]
+colors_params = {}
+steps_params = {}

@@ -1,4 +1,5 @@
 extends ItemList
+
 @onready var image: TextureRect = $"%Image"
 @onready var slider_list: VBoxContainer = $"%SliderList"
 @onready var viewport: SubViewport = $"%MainImageViewport"
@@ -49,7 +50,7 @@ func activate_shader(activated_shader_name: String):
 	if  ResourceLoader.exists("res://shader_params/" + str(activated_shader_name) + ".tres"):
 		activate_params(activated_shader_name)
 		update_params()
-
+	
 	image.update_pivot()
 
 
@@ -59,7 +60,7 @@ func activate_params(activated_shader_name: String):
 	for i in param_file.default_params:
 		param_file.current_params[i] = param_file.default_params[i]
 		image.material.set_shader_parameter(str(param_file.default_params[i]), i)
-
+	
 	for a in param_file.params.keys():
 		var label = Label.new()
 #		label.custom_minimum_size = Vector2(25, 45)
@@ -87,7 +88,7 @@ func activate_params(activated_shader_name: String):
 		var label = Label.new()
 		slider_list.add_child(label)
 		label.name = c + "Label"
-		label.text = "Color"
+		label.text = c
 		
 		var colorpicker := ColorPickerButton.new()
 		colorpicker.name = c + "Colorpicker"

@@ -1,7 +1,7 @@
 // https://www.shadertoy.com/view/MsV3Rd
 shader_type canvas_item;
 
-uniform float pixel_size : hint_range(1.0, 100, 0.1) = 4.0;
+uniform float pixel_size : hint_range(1.0, 100, 0.1) = 8.0;
 
 void fragment()
 {

@@ -5,11 +5,11 @@
 [resource]
 script = ExtResource("1_h7xs1")
 params = {
-"pixel_size": Vector3i(1, 50, 5)
+"pixel_size": Vector3i(1, 50, 8)
 }
 default_params = {
-"pixel_size": 5
+"pixel_size": 8
 }
-rounded_params = []
+rounded_params = ["pixel_size"]
 colors_params = {}
 steps_params = {}

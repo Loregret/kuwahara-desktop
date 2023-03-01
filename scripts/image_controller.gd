@@ -15,4 +15,3 @@ func _gui_input(event):
 			image.update_pivot()
 		image.scale.x = clamp(image.scale.x, 0.35, 1.5)
 		image.scale.y = clamp(image.scale.y, 0.35, 1.5)
-		print(image.scale)

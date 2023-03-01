@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://13yigy3ivbxd"]
+[gd_resource type="Resource" script_class="shader_params" load_steps=2 format=3 uid="uid://13yigy3ivbxd"]
 
 [ext_resource type="Script" path="res://shader_params/shader_params.gd" id="1_jhs3r"]
 
@@ -10,3 +10,6 @@ params = {
 default_params = {
 "pixel_size": 8.0
 }
+rounded_params = ["pixel_size"]
+colors_params = {}
+steps_params = {}

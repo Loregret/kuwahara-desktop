@@ -1,8 +1,6 @@
 // https://www.shadertoy.com/view/Xdt3Dr
 shader_type canvas_item;
 
-
-
 uniform float pixel_size = 4.;
 
 //----------------------------------------------------------------------------
@@ -31,12 +29,6 @@ const vec3 colorC = vec3(0.42,0.42,0.42);// grey2
 const vec3 colorD = vec3(0.60,0.82,0.52);// light green
 const vec3 colorE = vec3(0.42,0.37,0.71);// light blue
 const vec3 colorF = vec3(0.58,0.58,0.58);// grey3
-
-
-
-
-
-
 
 
 vec3 selectIfCloser (in vec3 idealColor, in vec3 paletteColor, in vec3 bestColorSoFar, inout float currentDistance) 
