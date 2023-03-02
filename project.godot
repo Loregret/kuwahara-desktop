@@ -39,6 +39,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-renderer/rendering_method="mobile"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false

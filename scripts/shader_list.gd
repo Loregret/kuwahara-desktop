@@ -3,7 +3,6 @@ extends ItemList
 @onready var image: TextureRect = $"%Image"
 @onready var slider_list: VBoxContainer = $"%SliderList"
 @onready var viewport: SubViewport = $"%MainImageViewport"
-
 @onready var save_dialog: FileDialog = $"%SaveWindow"
 
 var shader_names: Array
@@ -39,14 +38,14 @@ func activate_shader(activated_shader_name: String):
 	new_material.shader = shaders[activated_shader_name]
 	
 	for i in slider_list.get_children():
-		i.name = "Junk" + str(i.get_index())
+		i.name = "is_queued_for_deletion_" + str(i.get_index())
 		i.queue_free()
 	
 	image.material = new_material
 	
 	if activated_shader_name == "kuwahara5":
 		image.material.set_shader_parameter("iChannel1", image.texture)
-		
+	
 	if  ResourceLoader.exists("res://shader_params/" + str(activated_shader_name) + ".tres"):
 		activate_params(activated_shader_name)
 		update_params()
@@ -59,7 +58,8 @@ func activate_params(activated_shader_name: String):
 	
 	for i in param_file.default_params:
 		param_file.current_params[i] = param_file.default_params[i]
-		image.material.set_shader_parameter(str(param_file.default_params[i]), i)
+		print(param_file.default_params[i])
+		image.material.set_shader_parameter(i, param_file.default_params[i])
 	
 	for a in param_file.params.keys():
 		var label = Label.new()
@@ -100,7 +100,8 @@ func activate_params(activated_shader_name: String):
 		colorpicker.edit_alpha = false
 		colorpicker.color = new_color
 		colorpicker.text = "Pick Color"
-		colorpicker.connect("color_changed", Callable(self, "on_color_changed").bind(colorpicker))
+		colorpicker.connect("color_changed", Callable(self, "on_color_changed")\
+		.bind(colorpicker))
 
 
 func update_params():

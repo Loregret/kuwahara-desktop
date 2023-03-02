@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform int pixel_size : hint_range(1, 100) = 8;
+uniform int pixel_size : hint_range(1, 100) = 50;
 
 void fragment(){
 	vec2 pos = UV / TEXTURE_PIXEL_SIZE;
