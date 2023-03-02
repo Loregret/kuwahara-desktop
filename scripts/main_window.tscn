@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/image_controller.gd" id="1_lb0vh"]
 [ext_resource type="Script" path="res://scripts/shader_list.gd" id="2_p6d03"]
-[ext_resource type="Texture2D" uid="uid://ew2cfxvbvjuv" path="res://assets/ruins.jpg" id="2_po183"]
+[ext_resource type="Texture2D" uid="uid://b274scj6pa15g" path="res://assets/ruins.jpg" id="2_po183"]
 [ext_resource type="Script" path="res://scripts/open_img_button.gd" id="3_25rbw"]
 
 [sub_resource type="GDScript" id="GDScript_bmob7"]
