@@ -15,6 +15,8 @@ func _ready():
 	generate_list()
 	update_list()
 	image.material = null
+	select(0)
+	get_viewport().gui_embed_subwindows = false
 
 
 func generate_list():
@@ -58,12 +60,10 @@ func activate_params(activated_shader_name: String):
 	
 	for i in param_file.default_params:
 		param_file.current_params[i] = param_file.default_params[i]
-		print(param_file.default_params[i])
 		image.material.set_shader_parameter(i, param_file.default_params[i])
 	
 	for a in param_file.params.keys():
 		var label = Label.new()
-#		label.custom_minimum_size = Vector2(25, 45)
 		slider_list.add_child(label)
 		label.name = a + "Label"
 		
@@ -126,7 +126,6 @@ func on_slider_change(value, slider):
 func load_ext_image(path: String):
 	var img = Image.load_from_file(path)
 	var imgtex = ImageTexture.create_from_image(img)
-	
 	return imgtex
 
 

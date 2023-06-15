@@ -10,4 +10,6 @@ params = {
 default_params = {
 "radius": 3
 }
-rounded_params = PackedStringArray("radius")
+rounded_params = ["radius"]
+colors_params = {}
+steps_params = {}

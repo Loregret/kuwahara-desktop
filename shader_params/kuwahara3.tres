@@ -5,9 +5,11 @@
 [resource]
 script = ExtResource("1_a8xyu")
 params = {
-"radius": Vector3i(0, 8, 3)
+"radius": Vector3i(0, 10, 3)
 }
 default_params = {
 "radius": 3
 }
-rounded_params = PackedStringArray("radius")
+rounded_params = ["radius"]
+colors_params = {}
+steps_params = {}

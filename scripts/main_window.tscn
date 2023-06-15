@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://v6xt7pdb0jlv"]
+[gd_scene load_steps=7 format=3 uid="uid://v6xt7pdb0jlv"]
 
 [ext_resource type="Script" path="res://scripts/image_controller.gd" id="1_lb0vh"]
 [ext_resource type="Script" path="res://scripts/shader_list.gd" id="2_p6d03"]
@@ -12,6 +12,8 @@ script/source = "extends TextureRect
 func update_pivot():
 	pivot_offset = size / 2
 "
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5dc6m"]
 
 [node name="MainWindow" type="Panel"]
 anchors_preset = 15
@@ -85,7 +87,12 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5dc6m")
+allow_reselect = true
 script = ExtResource("2_p6d03")
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/MarginContainer/SettingsBox"]
+layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/MarginContainer/SettingsBox"]
 layout_mode = 2
@@ -115,6 +122,7 @@ size = Vector2i(450, 360)
 ok_button_text = "Open"
 file_mode = 0
 access = 2
+show_hidden_files = true
 
 [node name="SaveWindow" type="FileDialog" parent="."]
 unique_name_in_owner = true
@@ -122,6 +130,7 @@ size = Vector2i(450, 360)
 ok_button_text = "Save"
 access = 2
 filters = PackedStringArray("*.png")
+show_hidden_files = true
 
 [connection signal="item_selected" from="HBoxContainer/MarginContainer/SettingsBox/ShaderList" to="HBoxContainer/MarginContainer/SettingsBox/ShaderList" method="_on_shaderlist_item_selected"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer/SettingsBox/OpenImg" to="HBoxContainer/MarginContainer/SettingsBox/OpenImg" method="_on_pressed"]
